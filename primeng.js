@@ -8,6 +8,7 @@ __export(require("./components/common/api"));
 __export(require("./components/common/shared"));
 __export(require("./components/accordion/accordion"));
 __export(require("./components/autocomplete/autocomplete"));
+__export(require("./components/autocompleteextended/autocomplete"));
 __export(require("./components/blockui/blockui"));
 __export(require("./components/breadcrumb/breadcrumb"));
 __export(require("./components/button/button"));

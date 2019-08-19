@@ -8,7 +8,7 @@ import { DomHandler } from '../dom/domhandler';
 import { ObjectUtils } from '../utils/objectutils';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { AutoCompleteHeaderColumnMeta } from '../common/autocompletemetadata';
-import { TableModule } from '../table/table';
+import { TableModule, TableService } from '../table/table';
 
 export const AUTOCOMPLETE_VALUE_ACCESSOR: any = {
     provide: NG_VALUE_ACCESSOR,
@@ -38,37 +38,38 @@ export const AUTOCOMPLETE_VALUE_ACCESSOR: any = {
                 </li>
             </ul
             ><i *ngIf="loading" class="ui-autocomplete-loader pi pi-spinner pi-spin"></i><button #ddBtn type="button" pButton [icon]="dropdownIcon" class="ui-autocomplete-dropdown" [disabled]="disabled"
-                (click)="handleDropdownClick($event)" *ngIf="dropdown" [attr.tabindex]="tabindex"></button>
-            <div #panel *ngIf="overlayVisible" [ngClass]="['ui-autocomplete-panel ui-widget ui-widget-content ui-corner-all ui-shadow']" [style.width]="searchContainerWidth" [style.max-height]="scrollHeight" [ngStyle]="panelStyle" [class]="panelStyleClass"
+                 *ngIf="dropdown" [attr.tabindex]="tabindex"></button>
+             <div #panel *ngIf="overlayVisible" [ngClass]="['ui-autocomplete-panel ui-widget ui-widget-content ui-corner-all ui-shadow']" [style.width]="searchContainerWidth" [style.max-height]="scrollHeight" [ngStyle]="panelStyle" [class]="panelStyleClass"
                 [@overlayAnimation]="{value: 'visible', params: {showTransitionParams: showTransitionOptions, hideTransitionParams: hideTransitionOptions}}" (@overlayAnimation.start)="onOverlayAnimationStart($event)" (@overlayAnimation.done)="onOverlayAnimationDone($event)" >
-                <p-table
-                [columns]="headermeta"
-                [value]="suggestions"
-                [responsive]="true"
-                [scrollable]="true"
-                [style]="{width:'100%'}"
-                [scrollHeight]="scrollHeight"
-                (onRowSelect)="selectItem($event.data)">
-                 <ng-template pTemplate="colgroup" let-columns>
+            <p-table *ngIf="overlayVisible" 
+             [columns]="headermeta" 
+             [value]="suggestions"
+             [responsive]="true" 
+             [style]="{'width':'100%'}"
+             selectionMode="single" 
+            (onRowSelect)="selectItem($event.data)" >
+             <ng-template pTemplate="colgroup" let-columns>
         <colgroup>
             <col *ngFor="let col of columns" [style.width]="col.width">
         </colgroup>
     </ng-template>
-                 <ng-template pTemplate="header" let-columns>
+    <ng-template pTemplate="header" let-columns>
         <tr>
             <th *ngFor="let col of columns">
                 {{col.header}}
             </th>
         </tr>
     </ng-template>
-     <ng-template pTemplate="body" let-rowData let-columns="columns">
-        <tr>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr [pSelectableRow]="rowData">
             <td *ngFor="let col of columns">
                 {{rowData[col.field]}}
             </td>
         </tr>
-    </ng-template></p-table>
-            </div>
+    </ng-template>
+</p-table>
+
+</div> 
         </span>
     `,
     animations: [
@@ -257,6 +258,9 @@ export class AutoCompleteExtended implements AfterViewChecked, AfterContentInit,
             this.handleSuggestionsChange();
         }
     }
+    onRowSelect(event) {
+        alert(JSON.stringify(event));
+    }
 
     ngDoCheck() {
         if (!this.immutable) {
@@ -411,6 +415,7 @@ export class AutoCompleteExtended implements AfterViewChecked, AfterContentInit,
 
     selectItem(option: any, focus: boolean = true) {
         console.log(option);
+        debugger;
         if (this.forceSelectionUpdateModelTimeout) {
             clearTimeout(this.forceSelectionUpdateModelTimeout);
             this.forceSelectionUpdateModelTimeout = null;
@@ -571,7 +576,7 @@ export class AutoCompleteExtended implements AfterViewChecked, AfterContentInit,
                 //enter
                 case 13:
                     if (this.highlightOption) {
-                        this.selectItem(this.highlightOption);
+                         this.selectItem(this.highlightOption);
                         this.hide();
                     }
                     event.preventDefault();
@@ -778,6 +783,7 @@ export class AutoCompleteExtended implements AfterViewChecked, AfterContentInit,
 @NgModule({
     imports: [CommonModule, InputTextModule, ButtonModule, SharedModule, TableModule],
     exports: [AutoCompleteExtended, SharedModule],
-    declarations: [AutoCompleteExtended]
+    declarations: [AutoCompleteExtended],
+    providers: [TableService]
 })
 export class AutoCompleteModule { }
