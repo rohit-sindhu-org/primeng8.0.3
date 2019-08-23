@@ -10,7 +10,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { AutoCompleteHeaderColumnMeta } from '../common/autocompletemetadata';
 import { TableModule, TableService } from '../table/table';
 
-export const AUTOCOMPLETE_VALUE_ACCESSOR: any = {
+export const AUTOCOMPLETE_VALUE_EXTENDED_ACCESSOR: any = {
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => AutoCompleteExtended),
     multi: true
@@ -90,7 +90,7 @@ export const AUTOCOMPLETE_VALUE_ACCESSOR: any = {
         '[class.ui-inputwrapper-filled]': 'filled',
         '[class.ui-inputwrapper-focus]': 'focus && !disabled'
     },
-    providers: [AUTOCOMPLETE_VALUE_ACCESSOR]
+    providers: [AUTOCOMPLETE_VALUE_EXTENDED_ACCESSOR]
 })
 export class AutoCompleteExtended implements AfterViewChecked, AfterContentInit, DoCheck, OnDestroy, ControlValueAccessor {
 
@@ -786,4 +786,4 @@ export class AutoCompleteExtended implements AfterViewChecked, AfterContentInit,
     declarations: [AutoCompleteExtended],
     providers: [TableService]
 })
-export class AutoCompleteModule { }
+export class AutoCompleteExtenedModule { }

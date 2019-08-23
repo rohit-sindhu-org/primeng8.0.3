@@ -1,6 +1,6 @@
 import { TestBed, ComponentFixture,fakeAsync,tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { AutoComplete } from './autocomplete';
+import { AutoCompleteExtended } from './autocomplete';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -46,9 +46,8 @@ class TestAutocompleteComponent {
 }
 
 describe('AutoComplete', () => {
-  
-    let autocomplete: AutoComplete;
-    let autocomplete2: AutoComplete;
+  let autocomplete: AutoCompleteExtended;
+    let autocomplete2: AutoCompleteExtended;
     let testComponent: TestAutocompleteComponent;
     let fixture: ComponentFixture<TestAutocompleteComponent>;
   
@@ -62,7 +61,7 @@ describe('AutoComplete', () => {
         ButtonModule,
       ],
       declarations: [
-        AutoComplete,
+        AutoCompleteExtended,
         TestAutocompleteComponent
       ]
     });
