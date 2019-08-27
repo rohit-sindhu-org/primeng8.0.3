@@ -53,7 +53,7 @@ export class UIChart implements AfterViewInit, OnDestroy {
         this.themeChange.subscribe(res=>{
             Chart.defaults.global.defaultFontColor = res;
             this.refresh();
-        }
+        });
         
     }
 
