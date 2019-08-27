@@ -6,8 +6,27 @@ import { Component, OnInit } from '@angular/core';
 export class TableColGroupDemo implements OnInit {
 
     sales: any[];
+    frozenCols: any[];
+    cols:any[];
+    scrollableCols: any[];
 
     ngOnInit() {
+        this.cols = [
+         //   { field: 'brand', header: 'Brand' },
+            { field: 'lastYearSale', header: 'LastYearSale' },
+            { field: 'thisYearSale', header: 'ThisYearSale' },
+            { field: 'lastYearProfit', header: 'LastYearProfit' },
+            { field: 'thisYearProfit', header: 'ThisYearProfit' },
+            
+        ];
+        this.frozenCols = [{ field: 'brand', header: 'Brand' }];
+        this.scrollableCols = [
+            { field: 'year', header: 'Year' },
+            { field: 'lastYearSale', header: 'LastYearSale' },
+            { field: 'thisYearSale', header: 'ThisYearSale' },
+            { field: 'lastYearProfit', header: 'LastYearProfit' },
+            { field: 'thisYearProfit', header: 'ThisYearProfit' },
+        ];
         this.sales = [
             { brand: 'Apple', lastYearSale: '51%', thisYearSale: '40%', lastYearProfit: '$54,406.00', thisYearProfit: '$43,342' },
             { brand: 'Samsung', lastYearSale: '83%', thisYearSale: '96%', lastYearProfit: '$423,132', thisYearProfit: '$312,122' },

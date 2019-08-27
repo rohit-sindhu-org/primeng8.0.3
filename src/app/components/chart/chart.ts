@@ -1,5 +1,6 @@
 import {NgModule,Component,ElementRef,AfterViewInit,OnDestroy,Input,Output,EventEmitter} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import { Subject } from 'rxjs';
 //import * as Chart from 'chart.js';
 // import * as Chart from 'chart.js';
 declare var Chart: any;
@@ -34,7 +35,7 @@ export class UIChart implements AfterViewInit, OnDestroy {
     _data: any;
 
     chart: any;
-
+    themeChange:Subject<any>;
     constructor(public el: ElementRef) {}
     
     @Input() get data(): any {
@@ -49,6 +50,11 @@ export class UIChart implements AfterViewInit, OnDestroy {
     ngAfterViewInit() {
         this.initChart();
         this.initialized = true;
+        this.themeChange.subscribe(res=>{
+            Chart.defaults.global.defaultFontColor = res;
+            this.refresh();
+        }
+        
     }
 
     onCanvasClick(event) {

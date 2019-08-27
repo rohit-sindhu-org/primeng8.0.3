@@ -9,121 +9,6 @@
 </div>
 
 <div class="content-section implementation">
-    <h3 class="first">Vertical</h3>
-    <p-table [columns]="cols" [value]="cars1" [scrollable]="true" scrollHeight="200px">
-        <ng-template pTemplate="header" let-columns>
-            <tr>
-                <th *ngFor="let col of columns">
-                    {{col.header}}
-                </th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-rowData let-columns="columns">
-            <tr>
-                <td *ngFor="let col of columns">
-                    {{rowData[col.field]}}
-                </td>
-            </tr>
-        </ng-template>
-    </p-table>
-
-    <h3>Virtual Scroll - 250K Rows</h3>
-    <p-table [columns]="cols" [value]="virtualCars" [scrollable]="true" [rows]="20" scrollHeight="200px"
-            [virtualScroll]="true" (onLazyLoad)="loadDataOnScroll($event)" [virtualRowHeight]="34"
-            [lazy]="true" [totalRecords]="totalRecords">
-        <ng-template pTemplate="header" let-columns>
-            <tr>
-                <th *ngFor="let col of columns">
-                    {{col.header}}
-                </th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-rowData let-columns="columns">
-            <tr style="height:34px">
-                <td *ngFor="let col of columns">
-                    {{rowData[col.field]}}
-                </td>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="loadingbody" let-columns="columns">
-            <tr style="height:34px">
-                <td *ngFor="let col of columns">
-                    <div class="loading-text"></div>
-                </td>
-            </tr>
-        </ng-template>
-    </p-table>
-
-    <h3>Horizontal</h3>
-    <p-table [columns]="cols" [value]="cars2" [scrollable]="true" [style]="{width:'500px'}">
-        <ng-template pTemplate="colgroup" let-columns>
-            <colgroup>
-                <col *ngFor="let col of columns" style="width:250px">
-            </colgroup>
-        </ng-template>
-        <ng-template pTemplate="header" let-columns>
-            <tr>
-                <th *ngFor="let col of columns">
-                    {{col.header}}
-                </th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-rowData let-columns="columns">
-            <tr>
-                <td *ngFor="let col of columns">
-                    {{rowData[col.field]}}
-                </td>
-            </tr>
-        </ng-template>
-    </p-table>
-
-    <h3>Horizontal and Vertical</h3>
-    <p-table [columns]="cols" [value]="cars3" [scrollable]="true" [style]="{width:'500px'}" scrollHeight="200px">
-        <ng-template pTemplate="colgroup" let-columns>
-            <colgroup>
-                <col *ngFor="let col of columns" style="width:250px">
-            </colgroup>
-        </ng-template>
-        <ng-template pTemplate="header" let-columns>
-            <tr>
-                <th *ngFor="let col of columns">
-                    {{col.header}}
-                </th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-rowData let-columns="columns">
-            <tr>
-                <td *ngFor="let col of columns">
-                    {{rowData[col.field]}}
-                </td>
-            </tr>
-        </ng-template>
-    </p-table>
-
-    <h3>Frozen Rows</h3>
-    <p-table [columns]="cols" [value]="cars4" [frozenValue]="frozenCars" [scrollable]="true" scrollHeight="200px">
-        <ng-template pTemplate="header" let-columns>
-            <tr>
-                <th *ngFor="let col of columns">
-                    {{col.header}}
-                </th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="frozenrows" let-rowData let-columns="columns">
-            <tr>
-                <td *ngFor="let col of columns">
-                    <b>{{rowData[col.field]}}</b>
-                </td>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-rowData let-columns="columns">
-            <tr>
-                <td *ngFor="let col of columns">
-                    {{rowData[col.field]}}
-                </td>
-            </tr>
-        </ng-template>
-    </p-table>
 
     <h3>Frozen Columns</h3>
     <p-table [columns]="scrollableCols" [frozenColumns]="frozenCols" [value]="cars5" [scrollable]="true" scrollHeight="200px" frozenWidth="300px">
@@ -147,6 +32,60 @@
             </tr>
         </ng-template>
     </p-table>
+
+     <h3>Frozen Columns With Col Group</h3>
+     <p-table [columns]="scrollableCols" [value]="cars5" [scrollable]="true"
+         scrollHeight="200px" frozenWidth="300px">
+          <ng-template pTemplate="frozencolgroup" let-columns>
+              <colgroup>
+                  <col style="width:300px">
+              </colgroup>
+          </ng-template>
+         <ng-template pTemplate="colgroup" let-columns>
+             <colgroup>
+                 <col *ngFor="let col of columns" style="width:300px">
+             </colgroup>
+         </ng-template>
+         
+          <ng-template pTemplate="frozenheader" let-columns>
+              <tr>
+                  <th> VIN</th>
+              </tr>
+          </ng-template>
+         <ng-template pTemplate="header" let-columns>
+             <tr>
+                 <th colspan="3">Manufacture</th>
+                 <th colspan="3">Manufacture</th>
+             </tr>
+             <tr>
+                 <th>Year</th>
+                 <th>Brand</th>
+                 <th>Color</th>
+                 <th>Year</th>
+                 <th>Brand</th>
+                 <th>Color</th>
+             </tr>
+             <!-- <tr>
+                 <th *ngFor="let col of columns">
+                     {{col.header}}
+                 </th>
+             </tr> -->
+         </ng-template>
+         <ng-template pTemplate="body" let-rowData let-columns="columns">
+             <tr>
+                 <td *ngFor="let col of columns">
+                     {{rowData[col.field]}}
+                 </td>
+             </tr>
+         </ng-template>
+          <ng-template pTemplate="frozenbody" let-rowData let-columns="columns">
+              <tr>
+                  <td>
+                      {{rowData['vin']}}
+                  </td>
+              </tr>
+          </ng-template>
+     </p-table>
 
     <h3>Frozen Columns and Frozen Rows</h3>
     <p-table [columns]="scrollableCols" [frozenColumns]="frozenCols" [frozenValue]="frozenCars" [value]="cars5" [scrollable]="true" scrollHeight="200px" frozenWidth="300px">

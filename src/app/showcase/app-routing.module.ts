@@ -84,6 +84,7 @@ import { HomeComponent } from './components/home/home.component';
             {path: 'steps', loadChildren: './components/steps/stepsdemo.module#StepsDemoModule'},
             {path: 'support', loadChildren: './components/support/support.module#SupportModule'},
             {path: 'table', loadChildren: './components/table/tabledemo.module#TableDemoModule'},
+            { path: 'datatable', loadChildren: './components/datatable/datatabledemo.module#DataTableDemoModule' },
             {path: 'tabmenu', loadChildren: './components/tabmenu/tabmenudemo.module#TabMenuDemoModule'},
             {path: 'tabview', loadChildren: './components/tabview/tabviewdemo.module#TabViewDemoModule'},
             {path: 'terminal', loadChildren: './components/terminal/terminaldemo.module#TerminalDemoModule'},

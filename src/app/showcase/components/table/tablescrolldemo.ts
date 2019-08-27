@@ -72,7 +72,7 @@ export class TableScrollDemo implements OnInit {
         ];
 
         this.frozenCols = [
-            { field: 'vin', header: 'Vin' }
+            { field: 'vin', header: 'Vin',frozen:'true' }
         ];
 
         this.frozenCars = [

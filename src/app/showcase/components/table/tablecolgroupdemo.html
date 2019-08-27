@@ -44,6 +44,127 @@
     </p-table>
 </div>
 
+
+<div class="content-section introduction">
+    <div>
+        <span class="feature-title">Table - <span class="subitem">Column Group (Frozen Column Brand)</span></span>
+        <span>Columns can be grouped using rowspan and colspan properties with frozen columns</span>
+    </div>
+</div>
+
+<div class="content-section implementation">
+    <p-table frozenColumns="{ field: ' brand', header: 'brand' }" [value]="sales" [scrollable]="true"
+        scrollHeight="200px">
+        <ng-template pTemplate="header">
+            <tr>
+                <th rowspan="3">Brand</th>
+                <th colspan="4">Sale Rate</th>
+            </tr>
+            <tr>
+                <th colspan="2">Sales</th>
+                <th colspan="2">Profits</th>
+            </tr>
+            <tr>
+                <th>Last Year</th>
+                <th>This Year</th>
+                <th>Last Year</th>
+                <th>This Year</th>
+            </tr>
+           
+        </ng-template>
+        <ng-template pTemplate="body" let-sale>
+            <tr>
+                <td>{{sale.brand}}</td>
+                <td>{{sale.lastYearSale}}</td>
+                <td>{{sale.thisYearSale}}</td>
+                <td>{{sale.lastYearProfit}}</td>
+                <td>{{sale.thisYearProfit}}</td>
+              
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <tr>
+                <td colspan="3">Totals</td>
+                <td>$506,202</td>
+                <td>$531,020</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+<div>
+<h3>Frozen Columns</h3>
+<p-table [columns]="scrollableCols" [frozenColumns]="frozenCols" [value]="sales" [scrollable]="true"
+    scrollHeight="200px" frozenWidth="300px" frozen='true'>
+    <ng-template pTemplate="frozencolgroup" let-columns>
+        <colgroup>
+            <col rowspan="4" frozen='true' style="width:200px;">
+        </colgroup>
+    </ng-template>
+     <ng-template pTemplate="colgroup" let-columns>
+         <colgroup>
+             <col colspan=4 style="width:400px">
+           
+         </colgroup>
+          <colgroup>
+              <col colspan=2 style="width:200px">
+            <col colspan=2 style="width:200px">
+          </colgroup>
+            <!-- <colgroup>
+                <col  style="width:100px">
+                <col style="width:100px">
+                <col style="width:100px">
+                <col style="width:100px">
+            </colgroup> -->
+     </ng-template>
+    <!-- <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns">
+                {{col.header}}
+            </th>
+        </tr>
+    </ng-template> -->
+     <ng-template pTemplate="frozenheader">
+<tr>
+    <th>Brand</th>
+    
+</tr> 
+
+    </ng-template>
+      <ng-template pTemplate="header">
+          <tr>
+              <th colspan="4">Sale Rate</th>
+          </tr>
+          <tr>
+              <th colspan="2">Sales</th>
+              <th colspan="2">Profits</th>
+          </tr>
+          <tr>
+              <th>Last Year</th>
+              <th>This Year</th>
+              <th>Last Year</th>
+              <th>This Year</th>
+          </tr>
+
+      </ng-template>
+      <ng-template pTemplate="frozenbody" let-rowData let-columns="columns">
+            <tr>
+                <td>
+                    {{rowData['brand']}}
+                </td>
+            </tr>
+      </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+         <tr>
+            <td *ngFor="let col of columns">
+                {{rowData[col.field]}}
+            </td>
+        </tr> 
+       
+    </ng-template>
+</p-table>
+</div>
+
+
 <div class="content-section documentation">
     <p-tabView effect="fade">
         <p-tabPanel header="tablecolgroupdemo.ts">

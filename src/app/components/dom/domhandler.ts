@@ -310,6 +310,7 @@ export class DomHandler {
     }
 
     public static getHeight(el): number {
+        debugger;
         let height = el.offsetHeight;
         let style = getComputedStyle(el);
 

@@ -475,6 +475,35 @@ export class Table implements OnInit, AfterViewInit, AfterContentInit, Blockable
         if (this.isStateful() && this.resizableColumns) {
             this.restoreColumnWidths();
         }
+        if(this.frozenColumns){
+            this.setfrozenHeaderHeight();
+        }
+    }
+
+
+
+    setfrozenHeaderHeight() {
+        debugger;
+        let frozenHeaderContainer = this.el.nativeElement.querySelectorAll('.ui-table-frozen-view .ui-table-scrollable-header');;
+        let scrollHeaderContainer = this.el.nativeElement.querySelectorAll('.ui-table-unfrozen-view .ui-table-scrollable-header');
+        if (frozenHeaderContainer.length > 0 && scrollHeaderContainer.length > 0) {
+            let frozenHeaderHeight = frozenHeaderContainer[0].clientHeight;
+            let scrollHeaderHeight = scrollHeaderContainer[0].clientHeight;
+            if (frozenHeaderHeight > scrollHeaderHeight) {
+
+                for (let ele in scrollHeaderContainer) {
+                    debugger;
+                }
+            }
+            if (frozenHeaderHeight > scrollHeaderHeight) {
+                let frozenHeaderContainer = this.el.nativeElement.querySelectorAll('.ui-table-frozen-view .ui-table-scrollable-header');
+
+                for (let ele in frozenHeaderContainer) {
+                    debugger;
+                }
+
+            }
+        }
     }
 
     @Input() get value(): any[] {
@@ -2227,6 +2256,8 @@ export class ScrollableView implements AfterViewInit,OnDestroy,AfterViewChecked 
         }
     }
 
+   
+
     ngAfterViewInit() {
         if(!this.frozen) {
             if (this.dt.frozenColumns || this.dt.frozenBodyTemplate) {
@@ -2249,9 +2280,10 @@ export class ScrollableView implements AfterViewInit,OnDestroy,AfterViewChecked 
         this.bindEvents();
         this.setScrollHeight();
         this.alignScrollBar();
-
+        
         if (this.frozen) {
             this.columnsSubscription = this.dt.tableService.columnsSource$.subscribe(() => {
+                debugger;
                 this.zone.runOutsideAngular(() => {
                     setTimeout(() => {
                         this.setScrollHeight();
@@ -2407,7 +2439,8 @@ export class ScrollableView implements AfterViewInit,OnDestroy,AfterViewChecked 
                 this.scrollBodyViewChild.nativeElement.style.maxHeight = scrollBodyHeight + 'px';
                 this.scrollBodyViewChild.nativeElement.style.visibility = 'visible';
             }
-            else {                
+            else {   
+                debugger;             
                 if(this.frozen && this.scrollableSiblingBody && DomHandler.getOuterWidth(this.scrollableSiblingBody) < DomHandler.getOuterWidth(this.scrollableSiblingBody.children[0]))
                     this.scrollBodyViewChild.nativeElement.style.maxHeight = (parseInt(this.scrollHeight) - DomHandler.calculateScrollbarWidth()) + 'px';
                 else
