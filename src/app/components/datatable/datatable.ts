@@ -215,7 +215,6 @@ public dt:DataTable;
 export class TableBody {
     public dt:DataTable;
     constructor( @Inject(forwardRef(() => DataTable)) datatable) {
-        debugger;
         this.dt=datatable as DataTable;
      }
 
