@@ -7,13 +7,17 @@ import {ButtonModule} from '../../../components/button/button';
 import {MessagesModule} from '../../../components/messages/messages';
 import {TabViewModule} from '../../../components/tabview/tabview';
 import {CodeHighlighterModule} from '../../../components/codehighlighter/codehighlighter';
+import { RadioButtonModule } from '../../../components/radiobutton/radiobutton';
+import { CheckboxModule } from '../../../components/checkbox/checkbox';
 
 @NgModule({
 	imports: [
 		CommonModule,
 		ConfirmDialogDemoRoutingModule,
         ConfirmDialogModule,
-        ButtonModule,
+		ButtonModule,
+		RadioButtonModule,
+		CheckboxModule,
         MessagesModule,
         TabViewModule,
         CodeHighlighterModule

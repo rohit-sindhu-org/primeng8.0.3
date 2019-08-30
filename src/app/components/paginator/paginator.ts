@@ -36,6 +36,7 @@ import {SharedModule} from '../common/shared';
             </a>
             <p-dropdown [options]="rowsPerPageItems" [(ngModel)]="rows" *ngIf="rowsPerPageOptions" 
                 (onChange)="onRppChange($event)" [appendTo]="dropdownAppendTo" [scrollHeight]="dropdownScrollHeight"></p-dropdown>
+                 <span>  {{ _totalRecords }} items in {{ _pageCount }} pages</span>
             <div class="ui-paginator-right-content" *ngIf="templateRight">
                 <ng-container *ngTemplateOutlet="templateRight; context: {$implicit: paginatorState}"></ng-container>
             </div>
@@ -74,6 +75,8 @@ export class Paginator implements OnInit {
 
     _rows: number = 0;
     
+    _pageCount: number = 0;
+
     _rowsPerPageOptions: any[];
     
     rowsPerPageItems: SelectItem[];
@@ -150,7 +153,8 @@ export class Paginator implements OnInit {
     }
 
     getPageCount() {
-        return Math.ceil(this.totalRecords/this.rows)||1;
+        this._pageCount=Math.ceil(this.totalRecords/this.rows)||1;
+        return this._pageCount;
     }
 
     calculatePageLinkBoundaries() {

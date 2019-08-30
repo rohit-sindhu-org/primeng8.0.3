@@ -8,10 +8,25 @@
 
 <div class="content-section implementation">    
     <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+    <p-confirmDialog key="confirmation-dialog-without-icon" #cdd>
+        <p-footer>
+            <div class="form-inline">
+                <div class="form-group margin-auto">
+                    <input type="button" class="btn btn-secondary" (click)="cdd.accept()" value="Yes" />
+                </div>
+                &nbsp;
+                <div class="form-group margin-auto">
+                    <input type="button" class="btn btn-secondary" (click)="cdd.reject()" value="No" />
+                </div>
+            </div>
+        </p-footer>
+    </p-confirmDialog>
 
     <button type="button" (click)="confirm1()" pButton icon="pi pi-check" label="Confirm"></button>
     
     <button type="button" (click)="confirm2()" pButton icon="pi pi-times" label="Delete"></button>
+
+     <button type="button" (click)="confirm3()" pButton icon="pi pi-check" label="With Controls"></button>
 
     <p-messages [value]="msgs"></p-messages>
 </div>

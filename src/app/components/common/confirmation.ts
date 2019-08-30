@@ -1,5 +1,19 @@
 import { EventEmitter } from '@angular/core';
 
+
+export interface DialogControl {
+    value?: any;
+    text?: string;
+}
+
+export interface ConfirmationDialogControl {
+    multiselect?: boolean;
+    controls?: DialogControl[];
+    rvalidation?: boolean;
+    errormsg?: string;
+    msgcss?: string;
+}
+
 export interface Confirmation {
     message?: string;
     key?: string;
@@ -12,6 +26,7 @@ export interface Confirmation {
     acceptVisible?: boolean;
     rejectVisible?: boolean;
     blockScroll?: boolean;
+    control?: ConfirmationDialogControl;
     acceptEvent?: EventEmitter<any>;
     rejectEvent?: EventEmitter<any>;
 }

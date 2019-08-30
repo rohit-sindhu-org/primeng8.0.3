@@ -1,6 +1,6 @@
 import { TestBed, ComponentFixture,fakeAsync,tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { AutoCompleteExtended } from './autocomplete';
+import { AutoCompleteExtended } from './autocompleteextended';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
