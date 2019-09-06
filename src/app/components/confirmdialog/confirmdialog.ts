@@ -312,7 +312,6 @@ export class ConfirmDialog implements OnDestroy {
     }
     
     accept(param?:any) {
-        debugger;
         if (this.confirmation.acceptEvent) {
             if (this.confirmation.control) {
                 param = this.controlsSelectedValue;

@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {FormsModule}    from '@angular/forms'
 import {AutoCompleteExtendedDemo} from './autocompletedemo';
 import {AutoCompleteExtendedDemoRoutingModule} from './autocompletedemo-routing.module';
-import { AutoCompleteExtenedModule} from '../../../components/autocompleteextended/autocompleteextended';
+import { AutoCompleteExtendedModule} from '../../../components/autocompleteextended/autocompleteextended';
 import {TabViewModule} from '../../../components/tabview/tabview';
 import {CodeHighlighterModule} from '../../../components/codehighlighter/codehighlighter';
 
@@ -12,7 +12,7 @@ import {CodeHighlighterModule} from '../../../components/codehighlighter/codehig
 		CommonModule,
         FormsModule,
 		AutoCompleteExtendedDemoRoutingModule,
-		AutoCompleteExtenedModule,
+		AutoCompleteExtendedModule,
         TabViewModule,
         CodeHighlighterModule
 	],

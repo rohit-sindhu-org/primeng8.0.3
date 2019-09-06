@@ -1,6 +1,6 @@
 {
   "name": "primengdevng8",
-  "version": "8.0.3-RC21",
+  "version": "8.0.3-RC28",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -66,12 +66,7 @@
     "tslint": "~5.15.0",
     "typescript": "~3.4.3",
     "web-animations-js": "angular/web-animations-js#release_pr208",
-    "xlsx": "^0.10.5",
-    "xlsx-style": "^0.8.13",
-    "zone.js": "~0.9.1"
-  },
-  "dependencies": {
-    "jszip": "^3.2.2",
+    "zone.js": "~0.9.1",
     "xlsx-style-cli": "0.0.3"
   }
 }

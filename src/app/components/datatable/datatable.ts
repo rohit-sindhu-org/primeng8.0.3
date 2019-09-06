@@ -9,7 +9,7 @@ import { PaginatorModule } from '../paginator/paginator';
 import { Column, Header, Footer, HeaderColumnGroup, FooterColumnGroup, PrimeTemplate } from '../common/shared';
 import { LazyLoadEvent, FilterMetadata, SortMeta } from '../common/api';
 import { DomHandler } from '../dom/domhandler';
-import { ObjectUtils } from '../utils/objectutils';
+import { ObjectUtils } from '../utils/ObjectUtils';
 import { Subscription } from 'rxjs';
 
 import { BlockableUI } from '../common/api';

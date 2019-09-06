@@ -41,9 +41,8 @@
                 "./node_modules/@fullcalendar/interaction/main.js",
                 "./node_modules/prismjs/prism.js",
                 "./node_modules/prismjs/components/prism-typescript.js",
-                "./node_modules/xlsx-style-cli/dist/xlsx.js",
-                "./node_modules/xlsx-style-cli/dist/cpexcel.js",
-                "./node_modules/xlsx-style-cli/dist/ods.js"
+                "./node_modules/xlsx-style-cli/dist/xlsx.full.min.js"
+               
 
               ]
             },

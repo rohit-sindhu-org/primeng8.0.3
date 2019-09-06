@@ -475,36 +475,36 @@ export class Table implements OnInit, AfterViewInit, AfterContentInit, Blockable
         if (this.isStateful() && this.resizableColumns) {
             this.restoreColumnWidths();
         }
-        if(this.frozenColumns){
-            this.setfrozenHeaderHeight();
-        }
+        // if(this.frozenColumns){
+        //     this.setfrozenHeaderHeight();
+        // }
     }
 
 
 
-    setfrozenHeaderHeight() {
-        debugger;
-        let frozenHeaderContainer = this.el.nativeElement.querySelectorAll('.ui-table-frozen-view .ui-table-scrollable-header');;
-        let scrollHeaderContainer = this.el.nativeElement.querySelectorAll('.ui-table-unfrozen-view .ui-table-scrollable-header');
-        if (frozenHeaderContainer.length > 0 && scrollHeaderContainer.length > 0) {
-            let frozenHeaderHeight = frozenHeaderContainer[0].clientHeight;
-            let scrollHeaderHeight = scrollHeaderContainer[0].clientHeight;
-            if (frozenHeaderHeight > scrollHeaderHeight) {
+    // setfrozenHeaderHeight() {
+        
+    //     let frozenHeaderContainer = this.el.nativeElement.querySelectorAll('.ui-table-frozen-view .ui-table-scrollable-header');;
+    //     let scrollHeaderContainer = this.el.nativeElement.querySelectorAll('.ui-table-unfrozen-view .ui-table-scrollable-header');
+    //     if (frozenHeaderContainer.length > 0 && scrollHeaderContainer.length > 0) {
+    //         let frozenHeaderHeight = frozenHeaderContainer[0].clientHeight;
+    //         let scrollHeaderHeight = scrollHeaderContainer[0].clientHeight;
+    //         if (frozenHeaderHeight > scrollHeaderHeight) {
 
-                for (let ele in scrollHeaderContainer) {
-                    debugger;
-                }
-            }
-            if (frozenHeaderHeight > scrollHeaderHeight) {
-                let frozenHeaderContainer = this.el.nativeElement.querySelectorAll('.ui-table-frozen-view .ui-table-scrollable-header');
+    //             for (let ele in scrollHeaderContainer) {
+                    
+    //             }
+    //         }
+    //         if (frozenHeaderHeight > scrollHeaderHeight) {
+    //             let frozenHeaderContainer = this.el.nativeElement.querySelectorAll('.ui-table-frozen-view .ui-table-scrollable-header');
 
-                for (let ele in frozenHeaderContainer) {
-                    debugger;
-                }
+    //             for (let ele in frozenHeaderContainer) {
+                    
+    //             }
 
-            }
-        }
-    }
+    //         }
+    //     }
+    // }
 
     @Input() get value(): any[] {
         return this._value;
@@ -2283,7 +2283,7 @@ export class ScrollableView implements AfterViewInit,OnDestroy,AfterViewChecked 
         
         if (this.frozen) {
             this.columnsSubscription = this.dt.tableService.columnsSource$.subscribe(() => {
-                debugger;
+                // debugger;
                 this.zone.runOutsideAngular(() => {
                     setTimeout(() => {
                         this.setScrollHeight();
@@ -2439,8 +2439,7 @@ export class ScrollableView implements AfterViewInit,OnDestroy,AfterViewChecked 
                 this.scrollBodyViewChild.nativeElement.style.maxHeight = scrollBodyHeight + 'px';
                 this.scrollBodyViewChild.nativeElement.style.visibility = 'visible';
             }
-            else {   
-                debugger;             
+            else {          
                 if(this.frozen && this.scrollableSiblingBody && DomHandler.getOuterWidth(this.scrollableSiblingBody) < DomHandler.getOuterWidth(this.scrollableSiblingBody.children[0]))
                     this.scrollBodyViewChild.nativeElement.style.maxHeight = (parseInt(this.scrollHeight) - DomHandler.calculateScrollbarWidth()) + 'px';
                 else

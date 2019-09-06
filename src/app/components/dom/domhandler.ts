@@ -116,6 +116,63 @@ export class DomHandler {
         element.style.left = left + 'px';
     }
 
+    public static absolutePositionOld(element: any, target: any, adjustmentwidth?: string, maxwidth?: number, containerWidthClass?: string): void {
+        let scrolladjustment: boolean = true;
+        if (containerWidthClass) {
+            scrolladjustment = false;
+            let ele = document.getElementsByClassName(containerWidthClass)[0];
+            if (ele.clientWidth < maxwidth) {
+                maxwidth = (ele.clientWidth - 50);
+            }
+        }
+        if (adjustmentwidth) {
+            element.style.width = adjustmentwidth;
+        }
+        let elementDimensions = element.offsetParent ? { width: element.offsetWidth, height: element.offsetHeight } : this.getHiddenElementDimensions(element);
+
+        if (maxwidth > 0 && Number(elementDimensions.width) > maxwidth) {
+            element.style.width = maxwidth + 'px';
+            elementDimensions = element.offsetParent ? { width: element.offsetWidth, height: element.offsetHeight } : this.getHiddenElementDimensions(element);
+        }
+
+        let elementOuterHeight = elementDimensions.height;
+        let elementOuterWidth = elementDimensions.width;
+        let targetOuterHeight = target.offsetHeight;
+        let targetOuterWidth = target.offsetWidth;
+        let targetOffset = target.getBoundingClientRect();
+        let windowScrollTop = this.getWindowScrollTop();
+        let windowScrollLeft = this.getWindowScrollLeft();
+        let viewport = this.getViewport();
+        let top, left;
+
+        if (scrolladjustment == false) {
+            windowScrollTop = 0;
+        }
+
+        //adjustment for autocomplete for mobile view when percentage width is less than the input width
+        if (adjustmentwidth && targetOuterWidth > elementOuterWidth) {
+            elementOuterWidth = targetOuterWidth;
+            element.style.width = targetOuterWidth + 'px';
+        }
+        if (targetOffset.top + targetOuterHeight + elementOuterHeight > viewport.height) {
+            top = targetOffset.top + windowScrollTop - elementOuterHeight;
+            if (top < 0) {
+                top = 0 + windowScrollTop;
+            }
+        }
+        else {
+            top = targetOuterHeight + targetOffset.top + windowScrollTop;
+        }
+
+        if (targetOffset.left + targetOuterWidth + elementOuterWidth > viewport.width)
+            left = targetOffset.left + windowScrollLeft + targetOuterWidth - elementOuterWidth;
+        else
+            left = targetOffset.left + windowScrollLeft;
+
+        element.style.top = top + 'px';
+        element.style.left = left + 'px';
+    }
+
     public static absolutePosition(element: any, target: any): void {
         let elementDimensions = element.offsetParent ? { width: element.offsetWidth, height: element.offsetHeight } : this.getHiddenElementDimensions(element);
         let elementOuterHeight = elementDimensions.height;
@@ -310,7 +367,7 @@ export class DomHandler {
     }
 
     public static getHeight(el): number {
-        debugger;
+        
         let height = el.offsetHeight;
         let style = getComputedStyle(el);
 
