@@ -43,7 +43,7 @@ export const AUTOCOMPLETEXTENDED_VALUE_ACCESSOR: any = {
                                    scrollable="true"
                                    [scrollWidth]="searchContainerWidth"
                                    [scrollHeight]="scrollHeight"
-                                   (onRowSelect)="selectItem($event)">
+                                   (onRowSelect)="selectItem($event.data)">
                           <p-column *ngFor="let column of headermeta" [field]="column.field" [header]="column.header" [hidden]="column.hidden" [style]="{'width':column.width}">
                               </p-column>
                       </p-dataTable>
@@ -394,6 +394,7 @@ export class AutoCompleteExtended implements AfterViewInit, AfterViewChecked, Do
     }
 
     selectItem(option: any) {
+        debugger;
         if (this.multiple) {
             this.multiInputEL.nativeElement.value = '';
             this.value = this.value || [];
@@ -630,7 +631,7 @@ export class AutoCompleteExtended implements AfterViewInit, AfterViewChecked, Do
             this.filled = this.inputFieldValue && this.inputFieldValue != '';
     }
 
-    updateInputField() {
+    updateInputField() {        
         let formattedValue = this.value ? (this.field ? ObjectUtils.resolveFieldData(this.value, this.field) || '' : this.value) : '';
         this.inputFieldValue = formattedValue;
 

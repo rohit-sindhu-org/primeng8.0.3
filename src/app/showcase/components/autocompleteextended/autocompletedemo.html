@@ -13,6 +13,6 @@
     (completeMethod)="filterCountrySingle($event)" field="name" [size]="30" placeholder="Countries" [minLength]="1"
     forceSelection="true" [minLength]="4">
 </p-autoComplete-extended>
-    <span style="margin-left:10px">Country: {{country ? country.name||country : 'none'}}</span>
+    <span style="margin-left:10px">Country: {{country |json }}</span>
 
 </div>
