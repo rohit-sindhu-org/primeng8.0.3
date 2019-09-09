@@ -110,8 +110,8 @@ export class RowExpansionLoader {
     <span class="ui-column-title" *ngIf="col.headerTemplate">
         <p-columnHeaderTemplateLoader [column]="col"></p-columnHeaderTemplateLoader>
     </span>
-    <span class="ui-sortable-column-icon pi pi-fw pi-sort" *ngIf="col.sortable"
-         [ngClass]="{'pi-sort-desc': (dt.getSortOrder(col) == -1),'pi-sort-asc': (dt.getSortOrder(col) == 1)}"></span>
+    <span class="ui-sortable-column-icon fa fa-fw fa-sort" *ngIf="col.sortable"
+         [ngClass]="{'fa-sort-desc': (dt.getSortOrder(col) == -1),'fa-sort-asc': (dt.getSortOrder(col) == 1)}"></span>
     <input type="text" class="ui-column-filter ui-inputtext ui-widget ui-state-default ui-corner-all" [attr.placeholder]="col.filterPlaceholder" *ngIf="col.filter&&!col.filterTemplate" [value]="dt.filters[col.field] ? dt.filters[col.field].value : ''"
         (click)="dt.onFilterInputClick($event)"  (blur)="dt.onFilterKeyup($event,$event.target.value, col.field, col.filterMatchMode)" (keyup)="dt.onFilterKeyup($event,$event.target.value, col.field, col.filterMatchMode)"/>
     <p-columnFilterTemplateLoader [column]="col" *ngIf="col.filterTemplate"></p-columnFilterTemplateLoader>
