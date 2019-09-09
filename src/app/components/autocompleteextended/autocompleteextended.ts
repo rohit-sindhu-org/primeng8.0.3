@@ -394,7 +394,6 @@ export class AutoCompleteExtended implements AfterViewInit, AfterViewChecked, Do
     }
 
     selectItem(option: any) {
-        debugger;
         if (this.multiple) {
             this.multiInputEL.nativeElement.value = '';
             this.value = this.value || [];
