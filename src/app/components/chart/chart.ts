@@ -1,6 +1,7 @@
 import {NgModule,Component,ElementRef,AfterViewInit,OnDestroy,Input,Output,EventEmitter} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 //import * as Chart from 'chart.js';
 // import * as Chart from 'chart.js';
 declare var Chart: any;
@@ -35,8 +36,9 @@ export class UIChart implements AfterViewInit, OnDestroy {
     _data: any;
 
     chart: any;
-    themeChange:Subject<any>;
-    constructor(public el: ElementRef) {}
+    themeChange: Subject<any> = new Subject<any>();
+    constructor(public el: ElementRef) {
+    }
     
     @Input() get data(): any {
         return this._data;
@@ -116,6 +118,7 @@ export class UIChart implements AfterViewInit, OnDestroy {
             this.chart.destroy();
             this.initialized = false;
             this.chart = null;
+            this.themeChange.complete();
         }
     }
 }
