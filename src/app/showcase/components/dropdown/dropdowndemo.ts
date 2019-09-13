@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SelectItem} from '../../../components/common/api';
 import {SelectItemGroup} from '../../../components/common/api';
 
@@ -10,7 +10,7 @@ interface City {
 @Component({
     templateUrl: './dropdowndemo.html',
 })
-export class DropdownDemo {
+export class DropdownDemo implements OnInit {
 
     cities: City[];
 
@@ -27,14 +27,30 @@ export class DropdownDemo {
     groupedCars: SelectItemGroup[];
 
     items: SelectItem[];
+    model:any={item:null};
+    item: string ;
 
-    item: string;
-
+    ngOnInit(){
+        
+    }
     constructor() {
-        this.items = [];
-        for (let i = 0; i < 10000; i++) {
-            this.items.push({label: 'Item ' + i, value: 'Item ' + i});
-        }
+        var p=new Promise<any>((resolve)=>{
+            setTimeout(() => {
+                let items = [];
+                items.push({ label: 'Select', value: null });
+                for (let i = 0; i < 10000; i++) {
+                    items.push({ label: 'Item ' + i, value: 'Item ' + i });
+                }
+                resolve(items);
+            }, 5000);
+        });
+        
+        p.then(x=>{
+            debugger;
+            this.items=x;
+        });
+        
+      
 
         this.cities = [
             {name: 'New York', code: 'NY'},
@@ -44,6 +60,7 @@ export class DropdownDemo {
             {name: 'Paris', code: 'PRS'}
         ];
 
+        this.selectedCity = this.cities[0];
         this.cars = [
             {label: 'Audi', value: 'Audi'},
             {label: 'BMW', value: 'BMW'},

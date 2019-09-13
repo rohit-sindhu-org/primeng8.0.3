@@ -20,3 +20,4 @@ export { DialogService } from '../dynamicdialog/dialogservice';
 export { DynamicDialogConfig } from '../dynamicdialog/dynamicdialog-config';
 export { DynamicDialogRef } from '../dynamicdialog/dynamicdialog-ref';
 export { AutoCompleteHeaderColumnMeta } from './autocompletemetadata';
+export { GlobalEventsManager } from './globalevent';
